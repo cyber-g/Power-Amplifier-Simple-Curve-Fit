@@ -73,7 +73,11 @@ ydata = [gain, gain, gain-1, gain-2];
 model = @(params, x) 10*log10(params(1) ./ (sqrt(params(2) + exp(2*(x - params(3)) / params(4)))));
 
 % Initial guess for [alpha, beta, gamma, delta]
-init_params = [20, 1, 2, 2];
+if contains(pa_case, 'V6')
+    init_params = [20, 1, 2, 2];
+elseif contains(pa_case, 'ADL5606')
+    init_params = [50, 10, 40, 20];
+end
 
 % Use lsqcurvefit to fit parameters
 opts = optimset('Display','off');
