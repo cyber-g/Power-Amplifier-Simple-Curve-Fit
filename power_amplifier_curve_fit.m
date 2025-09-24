@@ -42,7 +42,11 @@
 % Small signal gain = 20 dB
 % Output Power @ 1 dB compression = 17.8 dBm => Input = 17.8-19.0 = -1.2 dBm
 
-pa_case = 'V63+';
+% Example context: ADL5606
+% Small signal gain = 24.3 dB
+% Output Power @ 1 dB compression = 30.8 dBm => Input = 30.8-23.3 = 7.5 dBm
+
+pa_case = 'ADL5606';
 
 if contains(pa_case, 'V62+')
     disp('Using parameters for ZX60-V62+');
@@ -52,8 +56,12 @@ elseif contains(pa_case, 'V63+')
     disp('Using parameters for ZX60-V63+');
     gain = 20; % Small signal gain
     p1db_out = 17.8; % Output Power @ 1 dB compression
+elseif contains(pa_case, 'ADL5606')
+    disp('Using parameters for ADL5606');
+    gain = 24.3; % Small signal gain
+    p1db_out = 30.8; % Output Power @ 1 dB compression
 else
-    error('Unknown PA case. Please specify either V62+ or V63+.');
+    error('Unknown PA case. Please specify either V62+, V63+ or ADL5606.');
 end
 
 % Observed data ("manually" infered from datasheet)
